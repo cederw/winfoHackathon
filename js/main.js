@@ -14,6 +14,7 @@ var irony = "";
 var subjectivty = "";
 var confidence = "";
 var agreement = "";
+var message = "";
 
 $(document).ready(function() {
 	$(className).on('input', function(e) {
@@ -23,8 +24,6 @@ $(document).ready(function() {
             
         if(isPunctuation == true) {
             determineEmote(textValue);
-            
-            setHiddenValues();
 
             $(className).popover("destroy");
             $(className).popover({
@@ -39,16 +38,17 @@ $(document).ready(function() {
 	});
     //http://walterceder.me/winfoProject/dontbemean.php/?user=irene&comm=reasfadfdsf&rate=P&ir=ironic&sub=subjective&agr=yes&conf=100 
     //User, comm, rate = score_Tag, ir = ironic, sub = subjective, agr = agreement, conf = confidence
-
-
 });
 
 function setHiddenValues() {
-    $('rate').value = score;
-    $('ir').value = irony;
-    $('sub').value = subjectivty;
-    $('agr').value = agreement;
-    $('conf').value = confidence;
+
+    $('#rate').val(score);
+    $('#ir').val(irony);
+    $('#sub').val(subjectivty);
+    $('#agr').val(agreement);
+    $('#conf').val(confidence);
+
+    console.log($('#ir').val());
 }
 
 function determineEmote(textValue) {
@@ -65,18 +65,25 @@ function determineEmote(textValue) {
         subjectivty = response.irony;
         confidence = response.confidence;
         agreement = response.agreement;
+        setHiddenValues();
     });
 }
 
 function checkForPunctuation(text) {
-    var punctuation = [",", ".", "?", "!", ";", ":", "-", "{", "}", "(", ")", "[", "]", '"', "'", " ", "\n"];
+    var isPunctuation = true;
 
-    var index = text.length;
-    var lastChar = text.substring(index - 1);
+    if(text.length > 0) {
+        var punctuation = [",", ".", "?", "!", ";", ":", "-", "{", "}", "(", ")", "[", "]", '"', "'", " ", "\n"];
+
+        var index = text.length;
+
+        var lastChar = text.substring(index - 1);
     
-    var result = $.inArray(lastChar, punctuation);
+        var result = $.inArray(lastChar, punctuation);
 
-    var isPunctuation = (result == -1) ? false : true;
+        isPunctuation = (result == -1) ? false : true;
+    } 
+
     return isPunctuation;
 }
 
