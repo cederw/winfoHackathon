@@ -9,19 +9,24 @@ var className = ".emoteText";
 
 var imageSrc = "Neutral_None.png";
 var image = "<img src='img/" + imageSrc + "'>";
+var score = "";
+var irony = "";
+var subjectivty = "";
+var confidence = "";
 
 $(document).ready(function() {
 	$(className).on('input', function(e) {
 		var textValue = e.target.value;
 
         var isPunctuation = checkForPunctuation(textValue);
-
+            
         if(isPunctuation == true) {
             determineEmote(textValue);
-
+            
+            $(className).popover("destroy");
             $(className).popover({
                 placement: 'right', 
-                content: image, 
+                content: determineImage(score), 
                 html: true
             });
 
@@ -40,10 +45,10 @@ function determineEmote(textValue) {
         of: "json"
     },
     function(response, status){
-        var score = response.score_tag;
-        var irony = response.irony;
-        var subjectivty = response.irony;
-        var confidence = response.confidence;
+        score = response.score_tag;
+        irony = response.irony;
+        subjectivty = response.irony;
+        confidence = response.confidence;
     });
 }
 
