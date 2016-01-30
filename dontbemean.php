@@ -39,8 +39,7 @@ function getScore(){
 	} else {
 		$score += 5;
 	}
-
-	$score = $score * $conf/100; 
+	$score = $score * $_GET['conf']; 
 
 	return $score;
 }
