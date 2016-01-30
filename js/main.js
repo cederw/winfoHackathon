@@ -13,6 +13,7 @@ var score = "";
 var irony = "";
 var subjectivty = "";
 var confidence = "";
+var agreement = "";
 
 $(document).ready(function() {
 	$(className).on('input', function(e) {
@@ -23,6 +24,8 @@ $(document).ready(function() {
         if(isPunctuation == true) {
             determineEmote(textValue);
             
+            setHiddenValues();
+
             $(className).popover("destroy");
             $(className).popover({
                 placement: 'right', 
@@ -34,7 +37,19 @@ $(document).ready(function() {
         }
 
 	});
+    //http://walterceder.me/winfoProject/dontbemean.php/?user=irene&comm=reasfadfdsf&rate=P&ir=ironic&sub=subjective&agr=yes&conf=100 
+    //User, comm, rate = score_Tag, ir = ironic, sub = subjective, agr = agreement, conf = confidence
+
+
 });
+
+function setHiddenValues() {
+    $('rate').value = score;
+    $('ir').value = irony;
+    $('sub').value = subjectivty;
+    $('agr').value = agreement;
+    $('conf').value = confidence;
+}
 
 function determineEmote(textValue) {
     $.post(api,
@@ -49,6 +64,7 @@ function determineEmote(textValue) {
         irony = response.irony;
         subjectivty = response.irony;
         confidence = response.confidence;
+        agreement = response.agreement;
     });
 }
 
@@ -70,7 +86,7 @@ function determineImage(score) {
         case "P+":
             imageSrc = "ExtremePositive.png";
             break;
-        case "P":
+         case "P":
             imageSrc = "Positive.png";
             break;
         case "N":
