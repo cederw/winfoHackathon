@@ -62,7 +62,7 @@ function determineEmote(textValue) {
     function(response, status){
         score = response.score_tag;
         irony = response.irony;
-        subjectivty = response.irony;
+        subjectivty = response.subjectivty;
         confidence = response.confidence;
         agreement = response.agreement;
         setHiddenValues();
