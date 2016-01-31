@@ -17,23 +17,22 @@ var agreement = "";
 var message = "";
 
 $(document).ready(function() {
-	$(className).on('input', function(e) {
+
+    $(className).popover({
+        placement: 'right', 
+        title: determineTitle(score),
+        content: determineImage(score), 
+        html: true
+    });
+    $(className).popover("show");
+    
+    $(className).on('input', function(e) {
 		var textValue = e.target.value;
 
         var isPunctuation = checkForPunctuation(textValue);
             
         if(isPunctuation == true) {
             determineEmote(textValue);
-
-            $(className).popover("destroy");
-            $(className).popover({
-                placement: 'right', 
-                title: determineTitle(score),
-                content: determineImage(score), 
-                html: true
-            });
-
-            $(className).popover("show");
         }
 
 	});
@@ -66,6 +65,11 @@ function determineEmote(textValue) {
         subjectivity = response.subjectivity;
         confidence = response.confidence;
         agreement = response.agreement;
+        
+        $(className).data('bs.popover').options.content = determineImage(score);
+        $(className).data('bs.popover').options.title = determineTitle(score);
+        $(className).popover("show");
+        
         setHiddenValues();
     });
 }
