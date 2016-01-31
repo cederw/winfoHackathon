@@ -11,7 +11,7 @@ var imageSrc = "Neutral_None.png";
 var image = "<img src='img/" + imageSrc + "'>";
 var score = "";
 var irony = "";
-var subjectivty = "";
+var subjectivity = "";
 var confidence = "";
 var agreement = "";
 var message = "";
@@ -44,11 +44,11 @@ function setHiddenValues() {
 
     $('#rate').val(score);
     $('#ir').val(irony);
-    $('#sub').val(subjectivty);
+    $('#sub').val(subjectivity);
     $('#agr').val(agreement);
     $('#conf').val(confidence);
 
-    console.log($('#ir').val());
+    console.log($('#sub').val());
 }
 
 function determineEmote(textValue) {
@@ -62,7 +62,7 @@ function determineEmote(textValue) {
     function(response, status){
         score = response.score_tag;
         irony = response.irony;
-        subjectivty = response.subjectivty;
+        subjectivity = response.subjectivity;
         confidence = response.confidence;
         agreement = response.agreement;
         setHiddenValues();
