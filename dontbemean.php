@@ -12,32 +12,32 @@ $conf = $_GET['conf'];
 
 function getScore(){
 	$score = 0; 
-	if ($rate == 'P+') {
+	if ($_GET['rate'] == 'P+') {
 		$score += 4000;
-	} else if ($rate == 'P') {
+	} else if ($_GET['rate'] == 'P') {
 		$score += 3000;
-	} else if ($rate == 'NEU' || $rate == 'NONE') {
+	} else if ($_GET['rate'] == 'NEU' || $_GET['rate'] == 'NONE') {
 		$score += 2000;
-	} else if ($rate == 'N') {
+	} else if ($_GET['rate'] == 'N') {
 		$score += 1000;
 	}
-    echo $score;
+   // echo $score;
 
-	if ($ir == 'NONIRONIC') {
+	if ($_GET['ir'] == 'NONIRONIC') {
 		$score += 1000;
-	} else if ($ir == 'IRONIC') {
+	} else if ($_GET['ir'] == 'IRONIC') {
 		$score += 500;
 	}
-    echo $score;
-	if ($sub == 'OBJECTIVE') {
+   // echo $score;
+	if ($_GET['sub'] == 'OBJECTIVE') {
 		$score += 100;
-	} else if ($sub == 'SUBJECTIVE') {
+	} else if ($_GET['sub'] == 'SUBJECTIVE') {
 		$score += 50; 
 	}
-    echo $score; 
-	if ($agr == 'AGREEMENT') {
+  //  echo $score; 
+	if ($_GET['agr'] == 'AGREEMENT') {
 		$score += 10; 
-	} else if ($agr == 'DISAGREEMENT'){
+	} else if ($_GET['agr'] == 'DISAGREEMENT'){
 		$score += 5;
 	}
 	$score = $score * $_GET['conf']; 
@@ -62,11 +62,11 @@ try {
     VALUES (
     	'".$_GET['user']."',
     	'".$_GET['comm']."',
-    	'".$rate."',
-    	'".$ir."',
-    	'".$sub."',
-    	'".$agr."',
-    	'".$conf."',
+    	'".$_GET['rate']."',
+    	'".$_GET['ir']."',
+    	'".$_GET['sub']."',
+    	'".$_GET['agr']."',
+    	'".$_GET['conf']."',
     	'".getScore()."')";
     // use exec() because no results are returned
     $conn->exec($sql);
