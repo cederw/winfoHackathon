@@ -28,6 +28,7 @@ $(document).ready(function() {
             $(className).popover("destroy");
             $(className).popover({
                 placement: 'right', 
+                title: determineTitle(score),
                 content: determineImage(score), 
                 html: true
             });
@@ -109,5 +110,23 @@ function determineImage(score) {
     return "<img src='img/" + imageSrc + "'>";
 }
 
-
+function determineTitle(score) {
+    switch (score) {
+        case "P+":
+            return "Extremely Positive";
+            break;
+         case "P":
+            return "Positive";
+            break;
+        case "N":
+            return "Negative";
+            break;
+        case "N+":
+            return "Extremely Negative";
+            break;
+        default:
+            return "Neutral";
+            break;
+    }
+}
 
