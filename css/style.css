@@ -1,5 +1,11 @@
+form {
+    position: absolute;
+    margin-top: 460px;
+    left: 175px;
+}
+
 textarea {
-	width: 30em;
+    width: 62em;
     height: 10em;
 }
 
@@ -13,4 +19,25 @@ textarea {
 
 body {
     background-image: url("../img/YoutubeBackground.png");
+}
+
+#commentSection {
+    position: absolute;
+    margin-top: 715px;
+    margin-left: 150px;
+}
+
+#commentUserName {
+    font-size: 1.3em;
+}
+
+
+#commentMessage {
+    font-size: 1.2em;    
+}
+
+hr {
+    size: 1em;
+    width: 70em;
+    align: left;
 }
