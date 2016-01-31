@@ -3,3 +3,14 @@ textarea {
     height: 10em;
 }
 
+/*.header {
+    background-color: #1976D2;
+}
+
+.container {
+    background-color: #CDDC39;
+}*/
+
+body {
+    background-image: url("../img/YoutubeBackground.png");
+}
