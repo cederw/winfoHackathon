@@ -21,22 +21,23 @@ function getScore(){
 	} else if ($rate == 'N') {
 		$score += 1000;
 	}
+    echo $score;
 
 	if ($ir == 'NONIRONIC') {
 		$score += 1000;
-	} else {
+	} else if ($ir == 'IRONIC') {
 		$score += 500;
 	}
-
+    echo $score;
 	if ($sub == 'OBJECTIVE') {
 		$score += 100;
-	} else {
+	} else if ($sub == 'SUBJECTIVE') {
 		$score += 50; 
 	}
-
+    echo $score; 
 	if ($agr == 'AGREEMENT') {
 		$score += 10; 
-	} else {
+	} else if ($agr == 'DISAGREEMENT'){
 		$score += 5;
 	}
 	$score = $score * $_GET['conf']; 
